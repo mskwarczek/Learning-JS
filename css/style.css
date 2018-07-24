@@ -1,1 +1,53 @@
-.carousel-cell { width: 100%; height: 50vh; min-height: 250px; }
+.main-carousel .carousel-cell {
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  min-height: 250px;
+  width: 100%;
+}
+
+.main-carousel .carousel-cell .container {
+  margin: 60px auto;
+  max-width: 1200px;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 3px 3px 3px #fff;
+}
+
+.main-carousel .flickity-button {
+  background: transparent;
+}
+
+.main-carousel .flickity-prev-next-button {
+  width: 100px;
+  height: 100px;
+}
+
+.main-carousel .flickity-button-icon {
+  fill: white;
+}
+
+.main-carousel .flickity-button:disabled {
+  display: none;
+}
+
+.button-restart {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 20px;
+  background-color: #333333;
+  color: #fff;
+  border-width: 0;
+  cursor: pointer;
+}
+
+.progress-bar {
+  height: 20px;
+  width: 0;
+  background: #333;
+}
+/*# sourceMappingURL=style.css.map */
