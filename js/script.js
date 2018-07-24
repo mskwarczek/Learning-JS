@@ -4,7 +4,7 @@
 var params = {
 	output: document.getElementById('output'),
 	result: document.getElementById('result'),
-	final: document.querySelector('.content-final'),
+	endgameModalContent: document.querySelector('.content-final'),
 	finalArray: document.querySelector('.final-array'),
 	roundNumber: 0,
 	playerPoints: 0,
@@ -14,13 +14,15 @@ var params = {
 	playerName: 'Player',
 	progress: [],
 	buttonSet: document.querySelectorAll('.player-move')
-}
+};
 
 // Add event listeners to buttons.
-for (var i = 0; i < params.buttonSet.length; i++) {
-	params.buttonSet[i].addEventListener('click', playerMove);
-	params.buttonSet[i].value = params.buttonSet[i].getAttribute('data-move');
-}
+(function initializeListeners() {
+	for (var i = 0; i < params.buttonSet.length; i++) {
+		params.buttonSet[i].addEventListener('click', playerMove);
+		params.buttonSet[i].value = params.buttonSet[i].getAttribute('data-move');
+	}
+})();
 
 // Write additional text at the end of div with id="output".
 function writeText (text) {
@@ -79,7 +81,7 @@ function modalGameEnd (text) {
 	document.querySelector('#modal-gameend').classList.add('show');
 	var endText = document.createElement('p');
 	endText.innerHTML = text;
-	params.final.appendChild(endText);
+	params.endgameModalContent.appendChild(endText);
 	params.newGameActive = false;
 }
 
@@ -108,7 +110,7 @@ function countPoints (roundResult) {
 }
 
 // Fill final game result table.
-function fillArray () {
+function fillGameLogArray () {
 	var newLine = document.createElement('tr');
 	var activeObject = params.progress[params.progress.length-1];
 	for (var key in activeObject) {
@@ -133,7 +135,7 @@ function playerMove (dataMove) {
 			arrRoundResult: roundResult,
 			arrGameResult: params.playerPoints + ' - ' + params.computerPoints
 		});
-		fillArray();
+		fillGameLogArray();
 		gameEnd();
 	}
 	else {
@@ -145,7 +147,7 @@ function playerMove (dataMove) {
 function clearText () {
 	params.output.innerHTML = "";
 	params.result.innerHTML = "";
-	params.final.innerHTML = "";
+	params.endgameModalContent.innerHTML = "";
 	while (params.finalArray.children.length > 1) {
     	params.finalArray.removeChild(params.finalArray.lastChild);
 	}
@@ -184,9 +186,10 @@ function hideModal(event) {
 	}
 }
 
-var closeButtons = document.querySelectorAll('.modal .close');
-for (var i = 0; i < closeButtons.length; i++){
-	closeButtons[i].addEventListener('click', hideModal);
-}
-
-document.querySelector('#modal-overlay').addEventListener('click', hideModal);
+(function registerListeners () {
+	var closeButtons = document.querySelectorAll('.modal .close');
+	for (var i = 0; i < closeButtons.length; i++){
+		closeButtons[i].addEventListener('click', hideModal);
+	}
+	document.querySelector('#modal-overlay').addEventListener('click', hideModal);
+})();
