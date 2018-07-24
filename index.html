@@ -7,16 +7,38 @@
 		<link rel="stylesheet" href="css/style.css" type="text/css">
 	</head>
 	<body>
-		<div>
-			<button onclick="newGame()">New Game</button>
+		<section class="game-window">
+			<div>
+				<button onclick="newGame()">New Game</button>
+			</div>
+			<div>
+				<button class="player-move" id="rock" data-move="rock">Rock</button>
+  				<button class="player-move" id="paper" data-move="paper">Paper</button>
+  				<button class="player-move" id="scissors" data-move="scissors">Scissors</button>
+			</div>
+			<div id="output"></div>
+			<div id="result"></div>
+		</section>
+		<div class="overlay" id="modal-overlay">
+			<div class="modal" id="modal-gameend">
+				<a href="#" class="close">x</a>
+				<header>End of game</header>
+				<div class="content"></div>
+				<div>
+					<table>
+						<tbody class="final-array">
+  							<tr>
+    							<th>Round number</th>
+    							<th>Player move</th> 
+    							<th>Computer move</th>
+    							<th>Round result</th>
+    							<th>Game result</th>
+  							</tr>
+  						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
-		<div>
-			<button class="player-move" id="rock" data-move="rock">Rock</button>
-  			<button class="player-move" id="paper" data-move="paper">Paper</button>
-  			<button class="player-move" id="scissors" data-move="scissors">Scissors</button>
-		</div>
-		<div id="output"></div>
-		<div id="result"></div>
 		<script src="js/script.js"></script>
 	</body>
 </html>

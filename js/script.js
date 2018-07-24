@@ -1,16 +1,18 @@
 'use strict';
 
 // Global variables.
-
 var params = {
 	output: document.getElementById('output'),
 	result: document.getElementById('result'),
+	final: document.querySelector('.content'),
+	finalArray: document.querySelector('.final-array'),
 	roundNumber: 0,
 	playerPoints: 0,
 	computerPoints: 0,
 	limitOfRounds: 0,
 	newGameActive: false,
 	playerName: 'Player',
+	progress: [],
 	buttonSet: document.querySelectorAll('.player-move')
 }
 
@@ -71,27 +73,51 @@ function giveRoundResult (playMove, compMove) {
 	return roundResult;
 }
 
+// Modal - end of game.
+function modalGameEnd (text) {
+	document.querySelector('#modal-overlay').classList.add('show');
+	document.querySelector('#modal-gameend').classList.add('show');
+	var endText = document.createElement('p');
+	endText.innerHTML = text;
+	params.final.appendChild(endText);
+	params.newGameActive = false;
+}
+
 // Check for winner of the entire game.
 function gameEnd () {
 	if (params.playerPoints === params.limitOfRounds) {
-		writeText(params.playerName + ' won the the entire game!<br>');
-		params.newGameActive = false;
+		var text = params.playerName + ' won the the entire game!<br>';
+		modalGameEnd(text);
 	}
 	if (params.computerPoints === params.limitOfRounds) {
-		writeText('Computer won the entire game!<br>');
-		params.newGameActive = false;
+		var text = 'Computer won the entire game!<br>';
+		modalGameEnd(text);
 	}
 }
 
 // Count current round number and points of each player.
 function countPoints (roundResult) {
 	switch (roundResult) {
-		case -1: ++params.computerPoints; break;
-		case 0: break;
-		case 1: ++params.playerPoints; break;
+		case -1: ++params.computerPoints; roundResult = "lost"; break;
+		case 0: roundResult = "draw"; break;
+		case 1: ++params.playerPoints; roundResult = "win"; break;
 	}
 	++params.roundNumber;
 	result.innerHTML = '<br>Round: ' + params.roundNumber + ' Rounds to win: ' + params.limitOfRounds + '<br>' + params.playerName + ' ' + params.playerPoints + ' - ' + params.computerPoints + ' Computer';
+	return roundResult;
+}
+
+// Fill final game result table.
+function fillArray () {
+	var newLine = document.createElement('tr');
+	var activeObject = params.progress[params.progress.length-1];
+	console.log(params.progress.length);
+	for (var key in activeObject) {
+		var newElement = document.createElement('td');
+		newElement.innerHTML = activeObject[key];
+		newLine.appendChild(newElement);
+	}
+	params.finalArray.appendChild(newLine);
 }
 
 // Begin new round of game.
@@ -100,7 +126,15 @@ function playerMove (dataMove) {
 		var playMove = dataMove.target.value;
 		var compMove = computerMove();
 		var roundResult = giveRoundResult(playMove, compMove);
-		countPoints(roundResult);
+		roundResult = countPoints(roundResult);
+		params.progress.push({
+			arrRoundNumber: params.roundNumber,
+			arrPlayerMove: playMove,
+			arrComputerMove: compMove,
+			arrRoundResult: roundResult,
+			arrGameResult: params.playerPoints + ' - ' + params.computerPoints
+		});
+		fillArray();
 		gameEnd();
 	}
 	else {
@@ -112,6 +146,11 @@ function playerMove (dataMove) {
 function clearText () {
 	params.output.innerHTML = "";
 	params.result.innerHTML = "";
+	params.final.innerHTML = "";
+	console.log(params.finalArray.children.length);
+	while (params.finalArray.children.length > 1) {
+    	params.finalArray.removeChild(params.finalArray.lastChild);
+	}
 }
 
 // Start a new game.
@@ -126,3 +165,16 @@ function newGame () {
 	params.limitOfRounds = parseInt(params.limitOfRounds);
 	params.newGameActive = true;
 }
+
+// Modals - hide.
+function hideModal(event) {
+	event.preventDefault();
+	document.querySelector('#modal-overlay').classList.remove('show');
+}
+
+var closeButtons = document.querySelectorAll('.modal .close');
+for (var i = 0; i < closeButtons.length; i++){
+	closeButtons[i].addEventListener('click', hideModal);
+}
+
+document.querySelector('#modal-overlay').addEventListener('click', hideModal);
