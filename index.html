@@ -20,10 +20,21 @@
 			<div id="result"></div>
 		</section>
 		<div class="overlay" id="modal-overlay">
+			<div class="modal" id="modal-gamestart">
+				<a href="#" class="close">x</a>
+				<header>New game</header>
+				<div class="content-new">
+					<form>
+  						<p>Player name: </p><input type="text" id="player-name"><br>
+  						<p>Number of rounds to win: </p><input type="number" id="rounds-number"><br><br>
+  						<input type="button" onclick="startGame()" value="START!">
+					</form>
+				</div>
+			</div>
 			<div class="modal" id="modal-gameend">
 				<a href="#" class="close">x</a>
 				<header>End of game</header>
-				<div class="content"></div>
+				<div class="content-final"></div>
 				<div>
 					<table>
 						<tbody class="final-array">

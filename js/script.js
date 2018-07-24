@@ -4,7 +4,7 @@
 var params = {
 	output: document.getElementById('output'),
 	result: document.getElementById('result'),
-	final: document.querySelector('.content'),
+	final: document.querySelector('.content-final'),
 	finalArray: document.querySelector('.final-array'),
 	roundNumber: 0,
 	playerPoints: 0,
@@ -111,7 +111,6 @@ function countPoints (roundResult) {
 function fillArray () {
 	var newLine = document.createElement('tr');
 	var activeObject = params.progress[params.progress.length-1];
-	console.log(params.progress.length);
 	for (var key in activeObject) {
 		var newElement = document.createElement('td');
 		newElement.innerHTML = activeObject[key];
@@ -147,29 +146,42 @@ function clearText () {
 	params.output.innerHTML = "";
 	params.result.innerHTML = "";
 	params.final.innerHTML = "";
-	console.log(params.finalArray.children.length);
 	while (params.finalArray.children.length > 1) {
     	params.finalArray.removeChild(params.finalArray.lastChild);
 	}
 }
 
-// Start a new game.
+
+// Open modal with new game form.
 function newGame () {
 	clearText();
+	document.querySelector('#modal-overlay').classList.add('show');
+	document.querySelector('#modal-gamestart').classList.add('show');
+	document.querySelector('#modal-gamestart').addEventListener('click', function(event){ event.stopPropagation() });
+}
+
+// Start a new game
+function startGame () {
+	document.querySelector('#modal-overlay').classList.remove('show');
+	document.querySelector('#modal-gamestart').classList.remove('show');
+	params.newGameActive = true;
 	params.roundNumber = 0;
 	params.playerPoints = 0;
 	params.computerPoints = 0;
 	params.limitOfRounds = 0;
-	params.playerName = window.prompt('Player name: ');
-	params.limitOfRounds = window.prompt('Total number of wins needed to win the entire game: ');
+	params.playerName = document.querySelector("#player-name").value;
+	params.limitOfRounds = document.querySelector("#rounds-number").value;
 	params.limitOfRounds = parseInt(params.limitOfRounds);
-	params.newGameActive = true;
 }
 
 // Modals - hide.
 function hideModal(event) {
 	event.preventDefault();
 	document.querySelector('#modal-overlay').classList.remove('show');
+	var hideContent = document.querySelectorAll('.modal');
+	for(var i = 0; i < hideContent.length; i++) {
+		hideContent[i].classList.remove('show');
+	}
 }
 
 var closeButtons = document.querySelectorAll('.modal .close');
