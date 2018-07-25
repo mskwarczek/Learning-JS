@@ -17,12 +17,19 @@ var params = {
 };
 
 // Add event listeners to buttons.
-(function initializeListeners() {
+initializeListeners ();
+
+function initializeListeners() {
 	for (var i = 0; i < params.buttonSet.length; i++) {
 		params.buttonSet[i].addEventListener('click', playerMove);
 		params.buttonSet[i].value = params.buttonSet[i].getAttribute('data-move');
 	}
-})();
+	var closeButtons = document.querySelectorAll('.modal .close');
+	for (var i = 0; i < closeButtons.length; i++){
+		closeButtons[i].addEventListener('click', hideModal);
+	}
+	document.querySelector('#modal-overlay').addEventListener('click', hideModal);
+}
 
 // Write additional text at the end of div with id="output".
 function writeText (text) {
@@ -185,11 +192,3 @@ function hideModal(event) {
 		hideContent[i].classList.remove('show');
 	}
 }
-
-(function registerListeners () {
-	var closeButtons = document.querySelectorAll('.modal .close');
-	for (var i = 0; i < closeButtons.length; i++){
-		closeButtons[i].addEventListener('click', hideModal);
-	}
-	document.querySelector('#modal-overlay').addEventListener('click', hideModal);
-})();
