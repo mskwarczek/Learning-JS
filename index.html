@@ -10,36 +10,52 @@
 	</head>
 	<body>
 		<div class="main-carousel">
-			<div class="carousel-cell" id="carousel-cell-1" style="background-image: url(https://images.pexels.com/photos/1089168/pexels-photo-1089168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);">
-				<div class="container">
-					<h2>Sample text</h2>
-				</div>
-			</div>
-			<div class="carousel-cell" id="carousel-cell-2" style="background-image: url(https://images.pexels.com/photos/971830/pexels-photo-971830.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);">
-				<div class="container">
-					<h2>Sample text</h2>
-				</div>
-			</div>
-			<div class="carousel-cell" id="carousel-cell-3"style="background-image: url(https://images.pexels.com/photos/1109967/pexels-photo-1109967.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);">
-				<div class="container">
-					<h2>Sample text</h2>
-				</div>
-			</div>
-			<div class="carousel-cell" id="carousel-cell-4" style="background-image: url(https://images.pexels.com/photos/785405/pexels-photo-785405.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);">
-				<div class="container">
-					<h2>Sample text</h2>
-				</div>
-			</div>
-			<div class="carousel-cell" id="carousel-cell-5" style="background-image: url(https://images.pexels.com/photos/1243440/pexels-photo-1243440.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);">
-				<div class="container">
-					<h2>Sample text</h2>
-				</div>
-			</div>
+			<div class="carousel-cell" id="carousel-cell-1"></div>
+			<div class="carousel-cell" id="carousel-cell-2"></div>
+			<div class="carousel-cell" id="carousel-cell-3"></div>
+			<div class="carousel-cell" id="carousel-cell-4"></div>
+			<div class="carousel-cell" id="carousel-cell-5"></div>
 		</div>
 		<div class="progress-bar"></div>
 		<button class="button-restart">Restart</button>
+		<script id="template" type="x-tmpl-mustache">
+			<div class="container">
+				<h2> {{ title }} </h2>
+			</div>
+			{{{ description }}}
+		</script>
+		<script>
+			var carouselCellsData = [
+				{
+					image: 'https://images.pexels.com/photos/1089168/pexels-photo-1089168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+					title: 'First image',
+					description: '<img src="https://images.pexels.com/photos/1089168/pexels-photo-1089168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Photo placeholder">'
+				},
+				{
+					image: 'https://images.pexels.com/photos/971830/pexels-photo-971830.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+					title: 'Second image',
+					description: '<img src="https://images.pexels.com/photos/971830/pexels-photo-971830.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="Photo placeholder">'
+				},
+				{
+					image: 'https://images.pexels.com/photos/1109967/pexels-photo-1109967.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+					title: 'Third image',
+					description: '<img src="https://images.pexels.com/photos/1109967/pexels-photo-1109967.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="Photo placeholder">'
+				},
+				{
+					image: 'https://images.pexels.com/photos/785405/pexels-photo-785405.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+					title: 'Fourth image',
+					description: '<img src="https://images.pexels.com/photos/785405/pexels-photo-785405.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="Photo placeholder">'
+				},
+				{
+					image: 'https://images.pexels.com/photos/1243440/pexels-photo-1243440.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+					title: 'Fifth image',
+					description: '<img src="https://images.pexels.com/photos/1243440/pexels-photo-1243440.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="Photo placeholder">'
+				}
+			];
+		</script>
 		<script src="vendor/js/flickity.pkgd.min.js"></script>
 		<script src="vendor/js/hash.js"></script>
+		<script src="vendor/js/mustache.min.js"></script>
 		<script src="js/script.js"></script>
 	</body>
 </html>

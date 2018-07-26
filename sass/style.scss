@@ -1,18 +1,32 @@
+@mixin position-absolute-lt ($horizontal, $vertical) {
+	position: absolute;
+	left: $horizontal;
+	top: $vertical;
+	transform: translate(- $horizontal, - $vertical);
+	white-space: nowrap;
+}
+
 .main-carousel {
 
 	.carousel-cell {
-		background-size: cover;
-		background-position: center;
 		height: 50vh;
 		min-height: 250px;
+		position: relative;
 		width: 100%;
 
 		.container {
+			@include position-absolute-lt (50%, 0);
 			margin: 60px auto;
 			max-width: 1200px;
 			text-align: center;
 			text-transform: uppercase;
 			text-shadow: 3px 3px 3px #fff;
+			z-index: 10;
+		}
+
+		img {
+			@include position-absolute-lt (50%, 50%);
+			width: 100%;
 		}
 	}
 
@@ -35,9 +49,7 @@
 }
 
 .button-restart {
-	position: absolute;
-	top: 0;
-	left: 0;
+	@include position-absolute-lt (0, 0)
 	width: 100px;
 	height: 40px;
 	border-radius: 5px;
