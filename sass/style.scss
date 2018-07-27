@@ -1,0 +1,72 @@
+@mixin position-absolute-lt ($horizontal, $vertical) {
+	position: absolute;
+	left: $horizontal;
+	top: $vertical;
+	transform: translate(- $horizontal, - $vertical);
+	white-space: nowrap;
+}
+
+.main-carousel {
+
+	.carousel-cell {
+		height: 50vh;
+		min-height: 250px;
+		position: relative;
+		width: 100%;
+
+		.container {
+			@include position-absolute-lt (50%, 0);
+			margin: 60px auto;
+			max-width: 1200px;
+			text-align: center;
+			text-transform: uppercase;
+			text-shadow: 3px 3px 3px #fff;
+			z-index: 10;
+		}
+
+		img {
+			@include position-absolute-lt (50%, 50%);
+			width: 100%;
+		}
+	}
+
+	.flickity-button {
+  		background: transparent;
+	}
+
+	.flickity-prev-next-button {
+		width: 100px;
+		height: 100px;
+	}
+
+	.flickity-button-icon {
+		fill: white;
+	}
+
+	.flickity-button:disabled {
+		display: none;
+	}
+}
+
+.button-restart {
+	@include position-absolute-lt (0, 0)
+	width: 100px;
+	height: 40px;
+	border-radius: 5px;
+	font-size: 20px;
+	background-color: #333333;
+	color: #fff;
+	border-width: 0;
+	cursor: pointer;
+}
+
+.progress-bar {
+  height: 20px;
+  width: 0;
+  background: #333;
+}
+
+#map {
+	height: 50vh;
+	width: 100%;
+}
