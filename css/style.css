@@ -1,74 +1,19 @@
-.main-carousel .carousel-cell {
-  height: 50vh;
-  min-height: 250px;
-  position: relative;
-  width: 100%;
-}
+.main-carousel .carousel-cell { height: 50vh; min-height: 250px; position: relative; width: 100%; }
 
-.main-carousel .carousel-cell .container {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translate(-50%, 0);
-  white-space: nowrap;
-  margin: 60px auto;
-  max-width: 1200px;
-  text-align: center;
-  text-transform: uppercase;
-  text-shadow: 3px 3px 3px #fff;
-  z-index: 10;
-}
+.main-carousel .carousel-cell .container { position: absolute; left: 50%; top: 0; transform: translate(-50%, 0); white-space: nowrap; margin: 60px auto; max-width: 1200px; text-align: center; text-transform: uppercase; text-shadow: 3px 3px 3px #fff; z-index: 10; }
 
-.main-carousel .carousel-cell img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  white-space: nowrap;
-  width: 100%;
-}
+.main-carousel .carousel-cell img { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; width: 100%; }
 
-.main-carousel .flickity-button {
-  background: transparent;
-}
+.main-carousel .flickity-button { background: transparent; }
 
-.main-carousel .flickity-prev-next-button {
-  width: 100px;
-  height: 100px;
-}
+.main-carousel .flickity-prev-next-button { width: 100px; height: 100px; }
 
-.main-carousel .flickity-button-icon {
-  fill: white;
-}
+.main-carousel .flickity-button-icon { fill: white; }
 
-.main-carousel .flickity-button:disabled {
-  display: none;
-}
+.main-carousel .flickity-button:disabled { display: none; }
 
-.button-restart {
-  position: absolute;
-  left: 0;
-  top: 0;
-  transform: translate(0, 0);
-  white-space: nowrap;
-  width: 100px;
-  height: 40px;
-  border-radius: 5px;
-  font-size: 20px;
-  background-color: #333333;
-  color: #fff;
-  border-width: 0;
-  cursor: pointer;
-}
+.button-restart { position: absolute; left: 0; top: 0; transform: translate(0, 0); white-space: nowrap; width: 100px; height: 40px; border-radius: 5px; font-size: 20px; background-color: #333333; color: #fff; border-width: 0; cursor: pointer; }
 
-.progress-bar {
-  height: 20px;
-  width: 0;
-  background: #333;
-}
+.progress-bar { height: 20px; width: 0; background: #333; }
 
-#map {
-  height: 50vh;
-  width: 100%;
-}
-/*# sourceMappingURL=style.css.map */
+#map { height: 50vh; width: 100%; }

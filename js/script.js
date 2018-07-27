@@ -32,11 +32,9 @@ flkty.on('scroll', function(progress) {
 window.initMap = function() {
 
 	var position = {lat: carouselCellsData[0].coords.lat, lng: carouselCellsData[0].coords.lng};
-	var map = new google.maps.Map(
-	document.getElementById('map'), {zoom: 8, center: position});
-	for (var i = 0; i < carouselCellsData.length; i++)
-	{
-		position = {lat: carouselCellsData[i].coords.lat, lng: carouselCellsData[i].coords.lng};
+	var map = new google.maps.Map(document.getElementById('map'), {zoom: 8, center: position});
+	carouselCellsData.forEach(element => {
+		position = {lat: element.coords.lat, lng: element.coords.lng};
 		var marker = new google.maps.Marker({position: position, map: map});
-	}
+	});
 }
