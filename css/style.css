@@ -1,0 +1,10 @@
+#board .column {
+  border: 3px solid #000;
+  margin: 5px;
+}
+
+#board .column .card {
+  border: 2px dotted #000;
+  margin: 5px;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,12 @@
+#board {
+
+	.column {
+		border: 3px solid #000;
+		margin: 5px;
+
+		.card {
+			border: 2px dotted #000;
+			margin: 5px;
+		}
+	}
+}
