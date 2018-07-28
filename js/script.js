@@ -20,7 +20,7 @@ var flkty = new Flickity( elem, {
 
 var restartButton = document.querySelector('.button-restart');
 restartButton.addEventListener('click', function() {
-	flkty.select(0)
+	flkty.select(0);
 });
 
 var progressBar = document.querySelector('.progress-bar')
@@ -33,8 +33,15 @@ window.initMap = function() {
 
 	var position = {lat: carouselCellsData[0].coords.lat, lng: carouselCellsData[0].coords.lng};
 	var map = new google.maps.Map(document.getElementById('map'), {zoom: 8, center: position});
-	carouselCellsData.forEach(element => {
-		position = {lat: element.coords.lat, lng: element.coords.lng};
+	for (let i = 0; i < carouselCellsData.length; i++) {
+		position = {lat: carouselCellsData[i].coords.lat, lng: carouselCellsData[i].coords.lng};
 		var marker = new google.maps.Marker({position: position, map: map});
+		marker.addListener('click', function() {
+			flkty.select(i);
+		});
+	}
+	flkty.on('change', function(index) {
+		map.panTo({lat: carouselCellsData[index].coords.lat, lng: carouselCellsData[index].coords.lng});
+		map.setZoom(8);
 	});
 }
