@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Carousel and Google Map</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="vendor/css/normalize.css" type="text/css">
+		<link rel="stylesheet" href="vendor/css/flickity.min.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/style.css" type="text/css">
+	</head>
+	<body>
+		<div class="main-carousel">
+			<div class="carousel-cell" id="carousel-cell-1"></div>
+			<div class="carousel-cell" id="carousel-cell-2"></div>
+			<div class="carousel-cell" id="carousel-cell-3"></div>
+			<div class="carousel-cell" id="carousel-cell-4"></div>
+			<div class="carousel-cell" id="carousel-cell-5"></div>
+		</div>
+		<div class="progress-bar"></div>
+		<button class="button-restart">Restart</button>
+
+		<div id="map"></div>
+
+		<script id="template" type="x-tmpl-mustache">
+			<div class="container">
+				<h2> {{ title }} </h2>
+			</div>
+			{{{ description }}}
+		</script>
+		<script>
+			var carouselCellsData = [
+				{
+					image: 'https://images.pexels.com/photos/1089168/pexels-photo-1089168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+					title: 'First image',
+					description: '<img src="https://images.pexels.com/photos/1089168/pexels-photo-1089168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Photo placeholder">',
+					coords: {lat: 54.187520, lng: 15.561903}
+				},
+				{
+					image: 'https://images.pexels.com/photos/971830/pexels-photo-971830.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+					title: 'Second image',
+					description: '<img src="https://images.pexels.com/photos/971830/pexels-photo-971830.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="Photo placeholder">',
+					coords: {lat: 54.602854, lng: 18.800005}
+				},
+				{
+					image: 'https://images.pexels.com/photos/1109967/pexels-photo-1109967.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+					title: 'Third image',
+					description: '<img src="https://images.pexels.com/photos/1109967/pexels-photo-1109967.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="Photo placeholder">',
+					coords: {lat: 49.219831, lng: 20.009272}
+				},
+				{
+					image: 'https://images.pexels.com/photos/785405/pexels-photo-785405.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+					title: 'Fourth image',
+					description: '<img src="https://images.pexels.com/photos/785405/pexels-photo-785405.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="Photo placeholder">',
+					coords: {lat: 50.593208, lng: 22.974613}
+				},
+				{
+					image: 'https://images.pexels.com/photos/1243440/pexels-photo-1243440.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+					title: 'Fifth image',
+					description: '<img src="https://images.pexels.com/photos/1243440/pexels-photo-1243440.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="Photo placeholder">',
+					coords: {lat: 50.209261, lng: 16.847009}
+				}
+			];
+		</script>
+		<script src="vendor/js/flickity.pkgd.min.js"></script>
+		<script src="vendor/js/hash.js"></script>
+		<script src="vendor/js/mustache.min.js"></script>
+		<script src="js/script.js"></script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHsDj1fSopJygGE6ZRknnziT-fsDoWDPo&callback=initMap"></script>
+	</body>
+</html>
