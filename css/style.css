@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+}
+
+.board {
+  background-color: #FFC312;
+  padding: 15px;
+  text-align: center;
+}
+
+.board h1 {
+  font-style: bold;
+  text-transform: uppercase;
+}
+
+.board button {
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.board button:hover {
+  background-color: #C4E538;
+  cursor: pointer;
+}
+
+.board .create-column {
+  margin-bottom: 15px;
+}
+
+.board .column-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+  -ms-flex-pack: space-evenly;
+      justify-content: space-evenly;
+}
+
+.board .column-container .column {
+  background-color: #fff;
+  border: 3px solid #000;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px;
+  text-align: center;
+  width: 500px;
+}
+
+@media (max-width: 535px) {
+  .board .column-container .column {
+    width: 300px;
+  }
+}
+
+.board .column-container .column .column-card-list {
+  min-height: 50px;
+  text-align: left;
+}
+
+.board .column-container .column .card {
+  background-color: #C4E538;
+  border: 2px dotted #000;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  position: relative;
+}
+
+.board .column-container .column .card .btn-delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+/*# sourceMappingURL=style.css.map */

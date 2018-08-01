@@ -1,0 +1,75 @@
+$phone-width: 536px;
+
+@mixin phone {
+	@media (max-width: #{$phone-width - 1px}) {
+		@content;
+	}
+}
+
+body {
+	margin: 0;
+}
+
+.board {
+	background-color: #FFC312;
+	padding: 15px;
+	text-align: center;
+
+	h1 {
+		font-style: bold;
+		text-transform: uppercase;
+	}
+
+	button {
+		border-radius: 5px;
+		font-size: 20px;
+
+			&:hover {
+				background-color: #C4E538;
+				cursor: pointer;
+			}
+	}
+
+	.create-column {
+		margin-bottom: 15px;
+	}
+	
+	.column-container {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-evenly;
+
+		.column {
+			background-color: #fff;
+			border: 3px solid #000;
+			border-radius: 10px;
+			margin: 5px;
+			padding: 10px;
+			text-align: center;
+			width: 500px;
+			@include phone {
+				width: 300px;
+			}
+
+			.column-card-list {
+				min-height: 50px;
+				text-align: left;
+			}
+
+			.card {
+				background-color: #C4E538;
+				border: 2px dotted #000;
+				border-radius: 5px;
+				margin: 5px;
+				padding: 5px;
+				position: relative;
+
+				.btn-delete {
+					position: absolute;
+					top: 0;
+					right: 0;
+				}
+			}
+		}
+	}
+}
