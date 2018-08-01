@@ -1,0 +1,33 @@
+body {
+  text-align: center;
+}
+
+body .box {
+  background-color: #12CBC4;
+  border: 3px solid #000;
+  border-radius: 10px;
+  margin: 30px auto;
+  padding: 10px;
+  width: 90%;
+  max-width: 500px;
+}
+
+body .box .quote {
+  font-style: italic;
+}
+
+body .box .author {
+  text-align: right;
+}
+
+body .box button {
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+body .box button:hover {
+  background-color: #0652DD;
+  color: #fff;
+}
+/*# sourceMappingURL=style.css.map */

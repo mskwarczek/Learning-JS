@@ -1,0 +1,32 @@
+body {
+	text-align: center;
+
+	.box {
+		background-color: #12CBC4;
+		border: 3px solid #000;
+		border-radius: 10px;
+		margin: 30px auto;
+		padding: 10px;
+		width: 90%;
+		max-width: 500px;
+
+		.quote {
+			font-style: italic;
+		}
+
+		.author {
+			text-align: right;
+		}
+
+		button {
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 18px;
+
+			&:hover {
+				background-color: #0652DD;
+				color: #fff;
+			}
+		}
+	}
+}
