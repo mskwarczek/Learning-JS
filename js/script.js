@@ -40,7 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   Column.prototype = {
     addCard: function(card) {
-      this.element.querySelector('ul').appendChild(card.element);
+      if (card.description){
+        this.element.querySelector('ul').appendChild(card.element);
+      }
     },
     removeColumn: function() {
       this.element.parentNode.removeChild(this.element);
@@ -87,8 +89,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.querySelector('#board .create-column').addEventListener('click', function() {
     var name = prompt('Enter a column name');
-    var column = new Column(name);
-    board.addColumn(column);
+    if (name) {
+      var column = new Column(name);
+      board.addColumn(column);
+    }
   });
 
   // CREATING COLUMNS
