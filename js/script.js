@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
   Column.prototype = {
     addCard: function(card) {
       this.element.querySelector('ul').appendChild(card.element);
- //     initSortable(card.element);
     },
     removeColumn: function() {
       this.element.parentNode.removeChild(this.element);
@@ -53,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
     this.id = randomString();
     this.description = description;
     this.element = generateTemplate('card-template', { 
-      description: this.description 
+      description: this.description
     }, 'li');
     this.element.querySelector('.card').addEventListener('click', function (event) {
       event.stopPropagation();
