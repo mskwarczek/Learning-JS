@@ -3,6 +3,10 @@
   margin: 5px;
 }
 
+#board .column .column-card-list {
+  min-height: 50px;
+}
+
 #board .column .card {
   border: 2px dotted #000;
   margin: 5px;

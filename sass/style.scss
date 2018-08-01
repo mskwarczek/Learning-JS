@@ -4,6 +4,10 @@
 		border: 3px solid #000;
 		margin: 5px;
 
+		.column-card-list {
+			min-height: 50px;
+		}
+
 		.card {
 			border: 2px dotted #000;
 			margin: 5px;

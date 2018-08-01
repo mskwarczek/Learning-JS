@@ -1,3 +1,5 @@
+'use strict';
+
 document.addEventListener('DOMContentLoaded', function() {
 
   function randomString() {
@@ -22,21 +24,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
   	this.id = randomString();
   	this.name = name;
-  	this.element = generateTemplate('column-template', {name: this.name});
-
+  	this.element = generateTemplate('column-template', {
+      name: this.name,
+      id: this.id
+    });
   	this.element.querySelector('.column').addEventListener('click', function(event) {
-		if (event.target.classList.contains('btn-delete')) {
-			self.removeColumn();
-		}
-		if (event.target.classList.contains('add-card')) {
-			self.addCard(new Card(prompt("Enter the name of the card")));
-		}});
+		  if (event.target.classList.contains('btn-delete')) {
+			  self.removeColumn();
+		  }
+		  if (event.target.classList.contains('add-card')) {
+			  self.addCard(new Card(prompt("Enter the name of the card")));
+		  }
+    });
 	}
 
   Column.prototype = {
     addCard: function(card) {
       this.element.querySelector('ul').appendChild(card.element);
-      initSortable(card.element);
+ //     initSortable(card.element);
     },
     removeColumn: function() {
       this.element.parentNode.removeChild(this.element);
@@ -45,16 +50,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function Card(description) {
     var self = this;
-
     this.id = randomString();
     this.description = description;
-    this.element = generateTemplate('card-template', { description: this.description }, 'li');
-
+    this.element = generateTemplate('card-template', { 
+      description: this.description 
+    }, 'li');
     this.element.querySelector('.card').addEventListener('click', function (event) {
       event.stopPropagation();
       if (event.target.classList.contains('btn-delete')) {
         self.removeCard();
-    }});
+      }
+    });
   }
 
   Card.prototype = {
@@ -62,42 +68,23 @@ document.addEventListener('DOMContentLoaded', function() {
       this.element.parentNode.removeChild(this.element);
     }
   }
-// ==============================================
-var board = {
-    name: 'Kanban Board',
-    addColumn: function(column) {
-      this.element.appendChild(column.element);
-      initSortable(column.element);
-    },
-    element: document.querySelector('#board .column-container')
-  };
 
-  function initSortable(el) {
-    console.log(el);
-    var sortable = Sortable.create(el, {
-      group: 'kanban',
-      sort: true
-    });
-  }
-
-/* ORIGINAL KODILLA CODE
   var board = {
     name: 'Kanban Board',
     addColumn: function(column) {
       this.element.appendChild(column.element);
-      initSortable(column.id); <------------------------
+      initSortable(column.id);
     },
     element: document.querySelector('#board .column-container')
   };
 
   function initSortable(id) {
-    var el = document.getElementById(id); <-- WILL THROW AN ERROR BECAUSE 'el' MUST BE A HTML ELEMENT. 'id' HERE IS NOT HTML ID BUT JUST A PROPERTY OF OBJECT COLUMN, SO document.getElementById(id) WON'T WORK
-    var sortable = Sortable.create(el, { <-----------------------
+    var el = document.getElementById(id);
+    var sortable = Sortable.create(el, {
       group: 'kanban',
       sort: true
     });
   }
-*/
 
   document.querySelector('#board .create-column').addEventListener('click', function() {
     var name = prompt('Enter a column name');
@@ -116,11 +103,12 @@ var board = {
   board.addColumn(doneColumn);
 
   // CREATING CARDS
-  var card1 = new Card('New task');
-  var card2 = new Card('Create kanban boards');
+  var card1 = new Card('To do');
+  var card2 = new Card('Doing');
+  var card3 = new Card('Done');
 
   // ADDING CARDS TO COLUMNS
   todoColumn.addCard(card1);
   doingColumn.addCard(card2);
-
+  doneColumn.addCard(card3);
 });
