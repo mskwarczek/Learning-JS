@@ -10,14 +10,15 @@ function searchCountries() {
         .then(function(resp) {
             return resp.json();
         })
-        .then(showCountriesList);
+        .then(createTemplate);
 }
 
-function showCountriesList(resp) {
+function createTemplate(resp) {
 	countriesList.innerHTML = '';
+	var templateCountry = document.getElementById('template').innerHTML;
+	Mustache.parse(templateCountry);
 	resp.forEach(function(item){
-    	var liEl = document.createElement('li');
-    	liEl.innerText = item.name;
-    	countriesList.appendChild(liEl);
+		var items = Mustache.render(templateCountry, item);
+		countriesList.insertAdjacentHTML('beforeend', items);
 	});
 }
