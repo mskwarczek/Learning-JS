@@ -45,14 +45,16 @@ function reset() {
 // Create list items inside the countries list. Show them and add listeners to them.
 function showCountriesList(resp) {
 	reset();
-	resp.forEach(function(item){
-		if (item.name.toLowerCase().includes(document.getElementById('country-name').value.toLowerCase())) {
+	resp
+		.filter(function(item) {
+			return (item.name.toLowerCase().includes(document.getElementById('country-name').value.toLowerCase()));
+		})
+		.forEach(function(item) {
     		var liEl = document.createElement('li');
     		liEl.classList.add('country');
     		liEl.innerText = item.name;
     		countriesList.appendChild(liEl);
-    	}
-	});
+    });
 	addListeners();
 }
 
