@@ -13,14 +13,16 @@ function initSortable(id) {
   var el = document.getElementById(id);
   var sortable = Sortable.create(el, {
     group: 'kanban',
-    sort: true
+    sort: true,
   });
 }
 
 document.querySelector('#board .create-column').addEventListener('click', function() {
   var colName = prompt('Enter a column name');
-  var data = {name: colName};
-  fetch(baseUrl + '/column', {
+  event.preventDefault();
+  if (colName) {
+    var data = {name: colName};
+    fetch(baseUrl + '/column', {
       method: 'POST',
       headers: myHeaders,
       body: JSON.stringify(data)
@@ -32,4 +34,5 @@ document.querySelector('#board .create-column').addEventListener('click', functi
       var column = new Column(resp.id, colName);
       board.addColumn(column);
     });
+  }
 });

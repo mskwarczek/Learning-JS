@@ -12,7 +12,7 @@ body {
 
 .board {
 	background-color: #FFC312;
-	padding: 15px;
+	padding: 30px;
 	text-align: center;
 
 	h1 {
@@ -21,11 +21,13 @@ body {
 	}
 
 	button {
+		background-color: #fff;
+		border: 2px solid #000;
 		border-radius: 5px;
 		font-size: 20px;
 
 			&:hover {
-				background-color: #C4E538;
+				background-color: #FFC312;
 				cursor: pointer;
 			}
 	}
@@ -61,12 +63,23 @@ body {
 				border: 2px dotted #000;
 				border-radius: 5px;
 				margin: 5px;
-				padding: 5px;
+				padding: 28px 5px;
 				position: relative;
+			
+				.card-description {
+					font-size: 20px;
+					margin: 0;
+				}
 
 				.btn-delete {
 					position: absolute;
 					top: 0;
+					right: 0;
+				}
+
+				.rename-card {
+					position: absolute;
+					bottom: 0;
 					right: 0;
 				}
 			}
