@@ -18,19 +18,18 @@ function initSortable(id) {
 }
 
 document.querySelector('#board .create-column').addEventListener('click', function() {
-  var name = prompt('Enter a column name');
-  var data = new FormData();
-  data.append('name', name);
+  var colName = prompt('Enter a column name');
+  var data = {name: colName};
   fetch(baseUrl + '/column', {
       method: 'POST',
       headers: myHeaders,
-      body: data,
+      body: JSON.stringify(data)
     })
     .then(function(resp) {
       return resp.json();
     })
     .then(function(resp) {
-      var column = new Column(resp.id, name);
+      var column = new Column(resp.id, colName);
       board.addColumn(column);
     });
 });
