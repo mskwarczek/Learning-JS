@@ -31,6 +31,10 @@ var movies = [
     }
 ];
 
+var config = {
+    moviePicHeight: '300px'
+};
+
 var MovieTitle = React.createClass({
     propTypes: {
         title: React.PropTypes.string.isRequired
@@ -68,7 +72,7 @@ var Movie = React.createClass({
             React.createElement('li', {},
                 React.createElement(MovieTitle, {title: this.props.movie.title}),
                 React.createElement(MovieDescription, {desc: this.props.movie.desc}),
-                React.createElement(MovieImage, {src: this.props.movie.pic, height: '300px'})
+                React.createElement(MovieImage, {src: this.props.movie.pic, height: config.moviePicHeight})
             )
         )
     }
