@@ -1,0 +1,18 @@
+.counter {
+  width: 600px;
+  margin: 20px auto;
+  border-bottom: 2px solid #000;
+}
+
+.counter span {
+  margin: 0 20px;
+}
+
+.counter button {
+  margin: 0 20px;
+}
+
+.counter button:hover {
+  color: blue;
+}
+/*# sourceMappingURL=style.css.map */
