@@ -1,0 +1,39 @@
+body { background-color: #0984e3; font-family: 'Montserrat', sans-serif; }
+
+.app { background-color: #dfe6e9; max-width: 800px; margin: 30px auto; border: 5px solid #636e72; border-radius: 30px; }
+
+.app .contactForm { display: -ms-grid; display: grid; -ms-grid-columns: 2fr 1fr; grid-template-columns: 2fr 1fr; grid-template-areas: ". addContact" ". addContact" ". addContact"; column-gap: 10px; margin: 15px 15px 30px; padding: 15px; }
+
+@media (max-width: 420px) { .app .contactForm { display: -ms-flexbox; display: flex; -ms-flex-flow: column nowrap; flex-flow: column nowrap; margin: 15px 10px 30px; padding: 10px; } }
+
+.app .contactForm button { grid-area: addContact; background-color: #dfe6e9; border: none; }
+
+.app .contactForm button .addContactImage { width: 100px; }
+
+@media (max-width: 420px) { .app .contactForm button .addContactImage { width: 50px; } }
+
+.app .contactForm button .addContactImage:hover { opacity: 0.6; }
+
+.app .contactForm input { border: 1px solid #636e72; border-radius: 5px; margin: 5px; font: 16px 'Montserrat'; width: 100%; }
+
+@media (max-width: 420px) { .app .contactForm input { font-size: 13px; } }
+
+.app .contactForm input:focus { background-color: #74b9ff; }
+
+.app .contactsList { padding: 0; }
+
+.app .contactsList .contactItem { display: -ms-grid; display: grid; -ms-grid-columns: minmax(30px, 1fr) minmax(150px, 2fr); grid-template-columns: minmax(30px, 1fr) minmax(150px, 2fr); -ms-grid-rows: auto; grid-template-rows: auto; grid-template-areas: "contactPhoto contactFirstName" "contactPhoto contactLastName" "contactPhoto contactEmail"; place-items: center; column-gap: 10px; row-gap: 5px; max-height: 150px; margin: 15px; padding: 15px; box-shadow: 3px 3px 3px #636e72; border-radius: 20px; font-size: 16px; }
+
+@media (max-width: 420px) { .app .contactsList .contactItem { grid-template-areas: "contactPhoto contactFirstName" "contactPhoto contactLastName" "contactEmail contactEmail"; column-gap: 5px; margin: 10px; padding: 10px; font-size: 13px; } }
+
+.app .contactsList .contactItem:hover { background-color: #74b9ff; }
+
+.app .contactsList .contactItem:hover .contactEmail { color: #000; }
+
+.app .contactsList .contactItem .contactImage { grid-area: contactPhoto; min-width: 30px; max-width: 100px; width: 100%; }
+
+.app .contactsList .contactItem .contactFirstName { grid-area: contactFirstName; margin: 0; }
+
+.app .contactsList .contactItem .contactLastName { grid-area: contactLastName; margin: 0; }
+
+.app .contactsList .contactItem .contactEmail { grid-area: contactEmail; color: #0984e3; text-decoration: none; }

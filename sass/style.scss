@@ -1,0 +1,132 @@
+@mixin phone {
+    @media (max-width: #{420px}) {
+        @content;
+    }
+}
+
+body {
+    background-color: #0984e3;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.app {
+    background-color: #dfe6e9;
+    max-width: 800px;
+    margin: 30px auto;
+    border: 5px solid #636e72;
+    border-radius: 30px;
+
+    .contactForm {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas:
+            ". addContact"
+            ". addContact"
+            ". addContact";
+        column-gap: 10px;
+        margin: 15px 15px 30px;
+        padding: 15px;
+        @include phone {
+            display: flex;
+            flex-flow: column nowrap;
+            margin: 15px 10px 30px;
+            padding: 10px;
+        }
+
+        button {
+            grid-area: addContact;
+            background-color: #dfe6e9;
+            border: none;
+
+            .addContactImage {
+                width: 100px;
+                @include phone {
+                    width: 50px;
+                }
+
+                &:hover {
+                    opacity: 0.6;
+                }
+            }
+        }
+
+        input {
+            border: 1px solid #636e72;
+            border-radius: 5px;
+            margin: 5px;
+            font: 16px 'Montserrat';
+            width: 100%;
+            @include phone {
+                font-size: 13px;
+            }
+
+            &:focus {
+                background-color: #74b9ff;
+            }
+        }
+    }
+
+    .contactsList {
+        padding: 0;
+    
+        .contactItem {
+            display: grid;
+            grid-template-columns: minmax(30px, 1fr) minmax(150px, 2fr);
+            grid-template-rows: auto;
+            grid-template-areas:
+                "contactPhoto contactFirstName"
+                "contactPhoto contactLastName"
+                "contactPhoto contactEmail";
+            place-items: center;
+            column-gap: 10px;
+            row-gap: 5px;
+            max-height: 150px;
+            margin: 15px;
+            padding: 15px;
+            box-shadow: 3px 3px 3px #636e72;
+            border-radius: 20px;
+            font-size: 16px;
+            @include phone {
+                grid-template-areas:
+                    "contactPhoto contactFirstName"
+                    "contactPhoto contactLastName"
+                    "contactEmail contactEmail";
+                column-gap: 5px;
+                margin: 10px;
+                padding: 10px;
+                font-size: 13px;
+            }
+            
+            &:hover {
+                background-color: #74b9ff;
+
+                .contactEmail {
+                    color: #000;
+                }
+            }
+
+            .contactImage {
+                grid-area: contactPhoto;
+                min-width: 30px;
+                max-width: 100px;
+                width: 100%;
+            }
+
+            .contactFirstName {
+                grid-area: contactFirstName;
+                margin: 0;
+            }
+
+            .contactLastName {
+                grid-area: contactLastName;
+                margin: 0;
+            }
+
+            .contactEmail {
+                grid-area: contactEmail;
+                color: #0984e3;
+                text-decoration: none;
+            }
+        }
+    }
+}
