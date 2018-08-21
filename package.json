@@ -19,13 +19,16 @@
     "watch:sassprefixer": "onchange sass/style.scss -- npm-run-all sass autoprefixer",
     "sass": "node-sass --output-style expanded --source-map true -o css sass",
     "autoprefixer": "autoprefixer-cli -o css/style.css css/style.css",
-    "watch:browsersync": "browser-sync start --server --files css/*.css *.html"
+    "watch:browsersync": "browser-sync start --server --files css/*.css *.html",
+    "start": "babel js/script.js --watch --out-file js/script-compiled.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer-cli": "^1.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
     "browser-sync": "^2.24.4",
     "globstar": "^1.0.0",
     "mkdirp": "^0.5.1",
