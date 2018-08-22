@@ -27,6 +27,7 @@ class Stopwatch {
         if (!this.running) {
             this.running = true;
             this.watch = setInterval(() => this.step(), 10);
+            this.display.classList.add('running');
         }
     }
 
@@ -51,6 +52,7 @@ class Stopwatch {
     stop() {
         this.running = false;
         clearInterval(this.watch);
+        this.display.classList.remove('running');
     }
 
     reset() {
