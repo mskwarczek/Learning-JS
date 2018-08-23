@@ -17,13 +17,25 @@ App = React.createClass({
         xhr.onload = function() {
             if (xhr.status === 200) {
                 var data = JSON.parse(xhr.responseText).data;
-                var gif = {
-                    url: data.fixed_width_downsampled_url,
-                    sourceUrl: data.url
-                };
-                callback(gif);
+                if (data.type === 'gif') {
+                    var gif = {
+                        url: data.fixed_width_downsampled_url,
+                        sourceUrl: data.url
+                    };
+                    callback(gif);
+                }
+                else {
+                    console.log(`Unable to find gif with given description: ${searchingText}.`);
+                    var gif = {};
+                    callback(gif);
+                }
             }
         };
+        xhr.onerror = function() {
+            console.log(`Unable to get gif from ${url}. Status code: ${xhr.status}.`);
+            var gif = {};
+            callback(gif);
+        }
         xhr.send();
     },
 
