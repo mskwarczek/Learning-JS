@@ -32,7 +32,7 @@ body .controls .button:hover {
   background-color: #546de5;
 }
 
-body .stopwatch {
+body .display {
   margin: 30px auto;
   max-width: 400px;
   font-size: 40px;
@@ -43,7 +43,7 @@ body .stopwatch {
   transition: 0.3s ease;
 }
 
-body .stopwatch.running {
+body .display.running {
   color: #fff;
   background-color: #546de5;
 }
