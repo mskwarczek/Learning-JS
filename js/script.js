@@ -3,21 +3,60 @@ class App extends React.Component {
         super();
         this.state = {
             searchText: '',
-            users: []
+            messageText: '',
+            users: [],
+            result: 1
         };
     }
   
     onChangeHandle(event) {
         this.setState({searchText: event.target.value});
     }
-  
+
+    onError(error) {
+        switch(this.state.result) {
+            case '-1':
+                this.setState({
+                    messageText: `No matching users found.`,
+                    users: []
+                })
+                break;
+            default:
+                this.setState({
+                    messageText: `An error has occured. Server error status code: ${error.message}. Application status code: ${this.state.result}.`,
+                    users: [],
+                })
+                console.error(`Error: ${error.message}`);
+                break;
+        }
+    }
+
     onSubmit(event) {
         event.preventDefault();
         const {searchText} = this.state;
         const url = `https://api.github.com/search/users?q=${searchText}`;
         fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw Error(response.status);
+                }
+                return response;
+            })
             .then(response => response.json())
-            .then(responseJson => this.setState({users: responseJson.items}));
+            .then(responseJson => {
+                if(responseJson.total_count === 0)
+                    throw Error('-1');
+                else
+                    this.setState({
+                        users: responseJson.items
+                    })
+            })
+            .catch(error => {
+                this.setState({
+                    result: error.message
+                })
+                this.onError(error);
+            });
     }
   
     render() {
@@ -31,6 +70,9 @@ class App extends React.Component {
                         onChange={event => this.onChangeHandle(event)}
                         value={this.state.searchText}/>
                 </form>
+                <div className="message-box">
+                    <p>{this.state.messageText}</p>
+                </div>
                 <UsersList users={this.state.users}/>
             </div>
         );
