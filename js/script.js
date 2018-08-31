@@ -14,6 +14,9 @@ class App extends React.Component {
     }
 
     onError(error) {
+        this.setState({
+            result: error.message
+        })
         switch(this.state.result) {
             case '-1':
                 this.setState({
@@ -36,27 +39,17 @@ class App extends React.Component {
         const {searchText} = this.state;
         const url = `https://api.github.com/search/users?q=${searchText}`;
         fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw Error(response.status);
-                }
-                return response;
-            })
             .then(response => response.json())
             .then(responseJson => {
-                if(responseJson.total_count === 0)
+                if(responseJson.total_count === 0) {
                     throw Error('-1');
+                }
                 else
                     this.setState({
                         users: responseJson.items
                     })
             })
-            .catch(error => {
-                this.setState({
-                    result: error.message
-                })
-                this.onError(error);
-            });
+            .catch(error => this.onError(error));
     }
   
     render() {

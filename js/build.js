@@ -33,6 +33,9 @@ var App = function (_React$Component) {
     }, {
         key: 'onError',
         value: function onError(error) {
+            this.setState({
+                result: error.message
+            });
             switch (this.state.result) {
                 case '-1':
                     this.setState({
@@ -59,21 +62,15 @@ var App = function (_React$Component) {
 
             var url = 'https://api.github.com/search/users?q=' + searchText;
             fetch(url).then(function (response) {
-                if (!response.ok) {
-                    throw Error(response.status);
-                }
-                return response;
-            }).then(function (response) {
                 return response.json();
             }).then(function (responseJson) {
-                if (responseJson.total_count === 0) throw Error('-1');else _this2.setState({
+                if (responseJson.total_count === 0) {
+                    throw Error('-1');
+                } else _this2.setState({
                     users: responseJson.items
                 });
             }).catch(function (error) {
-                _this2.setState({
-                    result: error.message
-                });
-                _this2.onError(error);
+                return _this2.onError(error);
             });
         }
     }, {
