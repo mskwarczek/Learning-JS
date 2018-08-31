@@ -1,5 +1,30 @@
 var GIPHY_PUB_KEY = 'dc6zaTOxFJmzC';
 
+function makeRequest(method, url) {
+    return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.onload = function () {
+            if (this.status >= 200 && this.status < 300) {
+                resolve(xhr.response);
+            } 
+            else {
+                reject({
+                    status: this.status,
+                    statusText: xhr.statusText
+                });
+            }
+        };
+        xhr.onerror = function () {
+            reject({
+                status: this.status,
+                statusText: xhr.statusText
+            });
+        };
+        xhr.send();
+    });
+}
+  
 App = React.createClass({
 
     getInitialState() {
@@ -11,16 +36,17 @@ App = React.createClass({
     },
 
     getGif: function(searchingText, callback) {
-        var url = 'http://api.giphy.com//v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText;
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                var data = JSON.parse(xhr.responseText).data;
-                if (data.type === 'gif') {
+        const url = 'http://api.giphy.com//v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText;
+        makeRequest('GET', url)
+            .then(response => {
+                response = JSON.parse(response).data;
+                return response;
+            })
+            .then(response => {
+                if (response.type === 'gif') {
                     var gif = {
-                        url: data.fixed_width_downsampled_url,
-                        sourceUrl: data.url
+                        url: response.fixed_width_downsampled_url,
+                        sourceUrl: response.url
                     };
                     callback(gif);
                 }
@@ -29,14 +55,12 @@ App = React.createClass({
                     var gif = {};
                     callback(gif);
                 }
-            }
-        };
-        xhr.onerror = function() {
-            console.log(`Unable to get gif from ${url}. Status code: ${xhr.status}.`);
-            var gif = {};
-            callback(gif);
-        }
-        xhr.send();
+            })
+            .catch(error => {
+                console.log(`Unable to get gif from ${url}. Status code: ${error.status} ${error.statusText}`);
+                var gif = {};
+                callback(gif);
+            })
     },
 
     handleSearch: function(searchingText) {
