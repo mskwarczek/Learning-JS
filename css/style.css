@@ -1,0 +1,13 @@
+body { max-width: 800px; margin: 30px auto; text-align: center; }
+
+body .controls { display: -ms-flexbox; display: flex; -ms-flex-flow: row wrap; flex-flow: row wrap; -ms-flex-pack: center; justify-content: center; padding: 30px; text-transform: uppercase; }
+
+body .controls .button { display: block; color: #546de5; text-decoration: none; font-size: 30px; border: 3px solid #546de5; border-radius: 5px; padding: 5px 10px; margin: 5px 10px; transition: 0.3s ease; }
+
+body .controls .button:hover { color: #fff; background-color: #546de5; }
+
+body .display { margin: 30px auto; max-width: 400px; font-size: 40px; padding: 5px 10px; color: #546de5; border: 3px solid #546de5; border-radius: 5px; transition: 0.3s ease; }
+
+body .display.running { color: #fff; background-color: #546de5; }
+
+body .results { margin: 30px auto; max-width: 150px; font-size: 20px; padding: 30px; color: #546de5; }
