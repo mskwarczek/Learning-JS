@@ -1,30 +1,5 @@
 var GIPHY_PUB_KEY = 'dc6zaTOxFJmzC';
 
-function makeRequest(method, url) {
-    return new Promise(function (resolve, reject) {
-        var xhr = new XMLHttpRequest();
-        xhr.open(method, url);
-        xhr.onload = function () {
-            if (this.status >= 200 && this.status < 300) {
-                resolve(xhr.response);
-            } 
-            else {
-                reject({
-                    status: this.status,
-                    statusText: xhr.statusText
-                });
-            }
-        };
-        xhr.onerror = function () {
-            reject({
-                status: this.status,
-                statusText: xhr.statusText
-            });
-        };
-        xhr.send();
-    });
-}
-  
 App = React.createClass({
 
     getInitialState() {
@@ -35,45 +10,48 @@ App = React.createClass({
         };
     },
 
-    getGif: function(searchingText, callback) {
+    getGif: function(searchingText) {
         const url = 'http://api.giphy.com//v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText;
-        makeRequest('GET', url)
+        return (
+            fetch(url)
             .then(response => {
-                response = JSON.parse(response).data;
-                return response;
+                if (response.ok === true) {
+                    return response.json();
+                } else
+                    throw new Error(`${response.status}, ${response.statusText}`);
             })
             .then(response => {
-                if (response.type === 'gif') {
+                if (response.data.type === 'gif') {
                     var gif = {
-                        url: response.fixed_width_downsampled_url,
-                        sourceUrl: response.url
+                        url: response.data.fixed_width_downsampled_url,
+                        sourceUrl: response.data.url
                     };
-                    callback(gif);
+                    return(gif);
                 }
                 else {
-                    console.log(`Unable to find gif with given description: ${searchingText}.`);
-                    var gif = {};
-                    callback(gif);
+                    throw new Error (`Unable to find gif with given description: "${searchingText}"`);
                 }
             })
             .catch(error => {
-                console.log(`Unable to get gif from ${url}. Status code: ${error.status} ${error.statusText}`);
+                console.log(`Unable to get gif from ${url}. ${error}.`);
                 var gif = {};
-                callback(gif);
+                return(gif);
             })
+        )
     },
 
     handleSearch: function(searchingText) {
         this.setState({
             loading: true
         });
-        this.getGif(searchingText, function(gif) {
-            this.setState({
-                loading: false,
-                gif: gif,
-                searchingText: searchingText
-            });
-        }.bind(this));
+        this.getGif(searchingText)
+            .then (gif => {
+                this.setState({
+                    loading: false,
+                    gif: gif,
+                    searchingText: searchingText
+                });
+            })
     },
 
     render: function() {
