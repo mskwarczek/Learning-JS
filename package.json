@@ -39,6 +39,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "nanomatch": "^1.2.13",
+    "pug": "^2.0.3",
     "save-dev": "^2.0.0"
   }
 }
