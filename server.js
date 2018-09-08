@@ -15,10 +15,16 @@ app.get('/userform', function (req, res) {
     res.end(JSON.stringify(response));
 });
 
-app.use('/store', function(req, res, next){
-    console.log('Jestem pośrednikiem przy żądaniu do /store');
-    next();
-});
+app.use('/store', 
+    function(req, res, next) {
+        console.log('Autoryzacja użytkownika do /store');
+        next();
+    },
+    function(req, res, next) {
+        console.log('Sprawdzenie uprawnień do /store');
+        next();
+    }
+);
 
 app.get('/store', function (req, res) {
     res.send('To jest sklep.');
@@ -27,7 +33,7 @@ app.get('/store', function (req, res) {
 var server = app.listen(3000, 'localhost', function() {
     var host = server.address().address;
     var port = server.address().port;
-    console.log('Aaplikacja nasłuchuje na http://' + host + ':' + port);
+    console.log('Aplikacja nasłuchuje na http://' + host + ':' + port);
 });
 
 app.use(function (req, res, next) {
