@@ -1,8 +1,10 @@
 import React from 'react';
 import uuid from 'uuid';
+import {hot} from 'react-hot-loader';
 import style from './App.css';
-import Title from '../components/Title.js'
-import TodoList from '../components/TodoList.js'
+import Title from '../components/Title.js';
+import TodoList from '../components/TodoList.js';
+import TodoForm from '../components/TodoForm.js';
 
 class App extends React.Component {
     constructor(props){
@@ -22,16 +24,20 @@ class App extends React.Component {
             filteredData: []
         };
         this.state.filteredData = this.state.data;
+        this.addTodo = this.addTodo.bind(this);
         this.removeTodo = this.removeTodo.bind(this);
         this.filterTodoList = this.filterTodoList.bind(this);
     }
-    addTodo(val){
+    addTodo(val) {
         const todo = {
             id: uuid.v4(),
             text: val
         };
         const data = [...this.state.data, todo];
-        this.setState({data});
+        this.setState(function() {
+            this.state.data = data;
+        });
+        this.showFilteredData();
     }
     filterTodoList(event) {
         event.persist();
@@ -59,6 +65,9 @@ class App extends React.Component {
         return (
             <div className={style.TodoApp}>
                 <Title title='Webpack + React' data={this.state.data}/>
+                <TodoForm add={this.addTodo}/>
+                <br/>
+                Search list:
                 <input type='text' value={this.state.filterText} onChange={this.filterTodoList}/>
                 <TodoList data={this.state.filteredData} remove={this.removeTodo}/>
             </div>
@@ -66,4 +75,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default hot(module)(App);

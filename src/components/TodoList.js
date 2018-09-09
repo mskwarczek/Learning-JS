@@ -1,10 +1,10 @@
 import React from 'react';
-import style from './TodoList.css';
+import Todo from '../components/Todo.js'
 
 const TodoList = props => 
     <ol>
         {props.data.map((elem) => 
-        <li key={elem.id} onClick={() => props.remove(elem.id)} className={style.TodoListItem}>{elem.text}</li>)}
+        <Todo key={elem.id} id={elem.id} remove={props.remove} text={elem.text}/>)}
     </ol>
 
 export default TodoList;
