@@ -19,9 +19,7 @@ class App extends React.Component {
                     text: 'feed my cat'
                 }],
             filterText: '',
-            filteredData: []
         };
-        this.state.filteredData = this.state.data;
         this.removeTodo = this.removeTodo.bind(this);
         this.filterTodoList = this.filterTodoList.bind(this);
     }
@@ -35,32 +33,22 @@ class App extends React.Component {
     }
     filterTodoList(event) {
         event.persist();
-        this.setState(function() {
-            this.state.filterText = event.target.value;
-        });
-        this.showFilteredData();
+        this.setState({filterText: event.target.value});
     }
     removeTodo(id) {
         const remainder = this.state.data.filter(todo => todo.id !== id);
-        this.setState(function() {
-            this.state.data = remainder;
-        });
-        this.showFilteredData();
-    }
-    showFilteredData() {
-        this.setState(function() {
-            this.state.filterText !== '' ?
-                this.state.filteredData = this.state.data.filter(todo => todo.text.toLowerCase().includes(this.state.filterText.toLowerCase())) :
-                this.state.filteredData = this.state.data;
-            return this.state;
-        });
+        this.setState({data: remainder});
     }
     render() {
+        let filteredData = [];
+        this.state.filterText !== '' ?
+                filteredData = this.state.data.filter(todo => todo.text.toLowerCase().includes(this.state.filterText.toLowerCase())) :
+                filteredData = this.state.data;
         return (
             <div className={style.TodoApp}>
                 <Title title='Webpack + React' data={this.state.data}/>
                 <input type='text' value={this.state.filterText} onChange={this.filterTodoList}/>
-                <TodoList data={this.state.filteredData} remove={this.removeTodo}/>
+                <TodoList data={filteredData} remove={this.removeTodo}/>
             </div>
         );
     }
