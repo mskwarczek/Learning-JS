@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+        title="Test application"
+    body(style={"text-align": "center"})
+        include ./header.pug
+        form(action="http://localhost:3000/auth/google" method="GET")
+            label User name:
+                br
+                input(type="text" name="user_name" required)
+            br
+            br
+            input(type="submit" value="Login with Google")
+        include ./footer.pug
