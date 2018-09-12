@@ -9,7 +9,9 @@ app.get('/', function(req, res){
 });
 
 app.get('/auth/google', function(req, res){
-    res.render('content');
+    res.render('content', {
+        user_name: req.query.user_name
+    });
 });
 
 var server = app.listen(3000, 'localhost', function() {
