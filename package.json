@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "nanomatch": "^1.2.13",
-    "save-dev": "^2.0.0"
+    "save-dev": "^2.0.0",
+    "uuid": "^3.3.2"
   }
 }
