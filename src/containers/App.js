@@ -40,10 +40,9 @@ class App extends React.Component {
         this.setState({data: remainder});
     }
     render() {
-        let filteredData = [];
-        this.state.filterText !== '' ?
-                filteredData = this.state.data.filter(todo => todo.text.toLowerCase().includes(this.state.filterText.toLowerCase())) :
-                filteredData = this.state.data;
+        const filteredData = this.state.filterText !== '' ?
+            this.state.data.filter(todo => todo.text.toLowerCase().includes(this.state.filterText.toLowerCase())) :
+            this.state.data;
         return (
             <div className={style.TodoApp}>
                 <Title title='Webpack + React' data={this.state.data}/>
