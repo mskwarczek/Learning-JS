@@ -12,7 +12,8 @@ class MessageForm extends Component {
         e.preventDefault();
         const message = {
             from: this.props.name,
-            text: this.state.text
+            text: this.state.text,
+            time: new Date().toLocaleTimeString()
         };
         this.props.onMessageSubmit(message);
         this.setState({text: ''});
