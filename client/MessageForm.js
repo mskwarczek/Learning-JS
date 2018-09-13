@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import uuid from 'uuid';
 
 import styles from './MessageForm.css';
 
@@ -11,6 +12,7 @@ class MessageForm extends Component {
     handleSubmit(e) {
         e.preventDefault();
         const message = {
+            id: uuid.v4(),
             from: this.props.name,
             text: this.state.text,
             time: new Date().toLocaleTimeString()

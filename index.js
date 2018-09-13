@@ -39,10 +39,17 @@ io.on('connection', (socket) => {
     socket.on('message', (message) => {
         const {name} = usersService.getUserById(socket.id);
         socket.broadcast.emit('message', {
+            id: message.id,
             text: message.text,
             from: name,
             time: message.time
         });
+    });
+});
+
+io.on('connection', (socket) => {
+    socket.on('delete', (id) => {
+        socket.broadcast.emit('delete', id);
     });
 });
 

@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
 }
@@ -21,7 +25,6 @@ body {
     width: 25vw;
     border-right: 1px solid #ccc;
     justify-content: center;
-    box-sizing: border-box;
     padding: 20px;
 }
 
@@ -29,7 +32,6 @@ body {
     display: flex;
     width: 75vw;
     justify-content: center;
-    box-sizing: border-box;
     padding: 20px;
 }
 

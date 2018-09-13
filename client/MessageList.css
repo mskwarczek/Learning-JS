@@ -6,3 +6,17 @@
     width: 75vw;
     padding: 20px;
 }
+
+.Message {
+    margin: 1px;
+}
+
+.MessageDeleteButton {
+    float: right;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.MessageDeleteButton:hover {
+    background-color: #ccc;
+}
