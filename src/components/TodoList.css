@@ -1,0 +1,10 @@
+.TodoListItem {
+    font-size: 20px;
+    text-align: left;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.TodoListItem:hover {
+    text-decoration: line-through;
+}
