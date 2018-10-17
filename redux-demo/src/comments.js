@@ -5,7 +5,6 @@ import {THUMB_UP_COMMENT} from './actions.js'
 import {THUMB_DOWN_COMMENT} from './actions.js'
 
 function comments(state = [], action) {
-    console.log(`inside comments.js, state: ${state}, action: ${action}`);
     switch(action.type) {
         case ADD_COMMENT:
             return [{
@@ -16,7 +15,7 @@ function comments(state = [], action) {
             , ...state];
         case REMOVE_COMMENT:
             return (
-                state.comments.filter(comment => comment.id !== action.id)
+                state.filter(comment => comment.id !== action.id)
             );
         case EDIT_COMMENT:
             return (

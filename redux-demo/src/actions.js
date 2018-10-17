@@ -7,7 +7,6 @@ const THUMB_UP_COMMENT = 'THUMB_UP_COMMENT';
 const THUMB_DOWN_COMMENT = 'THUMB_DOWN_COMMENT';
 
 function addComment(text) {
-    console.log(`inside addComment, text: ${text}`);
     return {
         type: ADD_COMMENT,
         id: uuid.v4(),
