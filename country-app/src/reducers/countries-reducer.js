@@ -1,10 +1,12 @@
-import { GET_COUNTRIES, GET_COUNTRY, SEARCH_COUNTRIES, DELETE_COUNTRY, SET_CONTINENT } from '../actions/actions-countries';
+import { GET_COUNTRIES, GET_COUNTRY, SEARCH_COUNTRIES, DELETE_COUNTRY, SET_CONTINENT, SET_PAGES, PREVIOUS_PAGE, NEXT_PAGE } from '../actions/actions-countries';
 import countriesData from '../data/countries.json';
 
 const initialState = {
     countries: countriesData,
     selectedCountry: {},
-    visibleCountries: []
+    visibleCountries: [],
+    countriesPerPage: 5,
+    activePage: 1
 };
 
 const countriesReducer = function (state = initialState, action) {
@@ -24,6 +26,19 @@ const countriesReducer = function (state = initialState, action) {
         case SET_CONTINENT:
             const continentCountries = state.countries.filter(country => country.continent === action.name);
             return Object.assign({}, state, {visibleCountries: continentCountries});
+        case SET_PAGES:
+            return Object.assign({}, state, {countriesPerPage: action.countriesPerPage, activePage: action.activePage});
+        case PREVIOUS_PAGE:
+            const prevPage = state.activePage > 1 ?
+                state.activePage - 1 :
+                state.activePage;
+            return Object.assign({}, state, {activePage: prevPage});
+        case NEXT_PAGE:
+            const numberOfPages = Math.ceil(state.visibleCountries.length / state.countriesPerPage);
+            const nextPage = state.activePage < numberOfPages ?
+                state.activePage + 1 :
+                state.activePage;
+            return Object.assign({}, state, {activePage: nextPage});
         default:
             return state;
     }
