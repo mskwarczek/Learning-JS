@@ -1,0 +1,22 @@
+body {
+  margin: 20px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+}
+
+button {
+    margin: 0 5px;
+}
+
+li {
+    margin: 20px 0;
+}
+
+input {
+    margin: 10px;
+}
+
+.newComment {
+    width: 400px;
+    overflow: auto;
+}
