@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha index.test.js",
-    "test:watch": "mocha -w index.test.js"
+    "test-style": "mocha calculateStylePoints.test.js",
+    "test-distance": "mocha calculateDistancePoints.test.js",
+    "test-total": "mocha calculateTotalPoints.test.js",
+    "test": "npm run test-style && npm run test-distance && npm run test-total"
   },
   "keywords": [],
   "author": "",
