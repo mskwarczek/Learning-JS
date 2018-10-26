@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://testUser:testpassword1@ds115592.mlab.com:15592/nodeappdatabase', {useNewUrlParser: true});
+mongoose.connect('mongodb://testuser:testpass1@ds115592.mlab.com:15592/nodeappdatabase', {useNewUrlParser: true});
 
 const userSchema = new Schema({
     name: String,
@@ -101,6 +101,7 @@ const updadeUserPassword = function(param1, param2) {
                 console.log('Uzytkownik ' + user.name + ' zostal pomyslnie zaktualizowany');
             })
         })
+        .catch(console.log.bind(console));
 }
 
 const updateUsername = function(param1, param2) {
@@ -116,7 +117,8 @@ const removeUser = function(param) {
             return user.remove(function() {
                 console.log('User successfully deleted');
             });
-        });
+        })
+        .catch(console.log.bind(console));
 }
 
 const removeAll = function() {
